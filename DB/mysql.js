@@ -45,14 +45,56 @@ function todos(tabla) {
     });
 }
 
-function uno(){
-    
+//Para mostrar por id 
+function uno(tabla, id) {
+    return new Promise((resolve, reject) => {
+        const query = `SELECT * FROM ${tabla} WHERE id=${id}`;
+        conexion.query(query, (error, results) => {
+            if (error) return reject(error);
+            resolve(results);
+        });
+    });
 }
-function agregar(){
-    
+
+function agregar(tabla, data) {
+    if (data && data.id == 0) {
+        return insertar(tabla, data); // Si el ID es 0, realiza una inserción
+    } else {
+        return actualizar(tabla, data); // Si no, realiza una actualización
+    }
 }
-function eliminar(){
-    
+
+// Insertar
+function insertar(tabla, data) {
+    return new Promise((resolve, reject) => {
+        const query = `INSERT INTO ${tabla} SET ?`;
+        conexion.query(query, data, (error, results) => {
+            if (error) return reject(error);
+            resolve(results);
+        });
+    });
+}
+
+// Actualizar
+function actualizar(tabla, data) {
+    return new Promise((resolve, reject) => {
+        const query = `UPDATE ${tabla} SET ? WHERE id = ?`;
+        conexion.query(query, [data, data.id], (error, results) => {
+            if (error) return reject(error);
+            resolve(results);
+        });
+    });
+}
+
+//Eliminar
+function eliminar(tabla, data){
+    return new Promise((resolve, reject) => {
+        const query = `DELETE FROM ${tabla} WHERE id= ?`;
+        conexion.query(query, data.id, (error, results) => {
+            if (error) return reject(error);
+            resolve(results);
+        });
+    });
 }
 
 module.exports = {
