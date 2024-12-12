@@ -58,9 +58,10 @@ function uno(tabla, id) {
 
 function agregar(tabla, data) {
     if (data && data.id == 0) {
-        return insertar(tabla, data); // Si el ID es 0, realiza una inserción
+        // Si el ID es 0 inserto
+        return insertar(tabla, data); 
     } else {
-        return actualizar(tabla, data); // Si no, realiza una actualización
+        return actualizar(tabla, data);
     }
 }
 

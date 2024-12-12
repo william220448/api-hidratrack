@@ -8,7 +8,7 @@ const router = express.Router();
 // Rutas
 router.get('/', todos);
 router.get('/:id', uno);
-router.post('/', agregar); // Cambiado a POST para agregar
+router.post('/', agregar); 
 router.put('/', eliminar);
 
 async function todos(req, res) {

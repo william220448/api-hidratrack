@@ -11,16 +11,16 @@ function uno(id) {
 }
 
 function agregar(body) {
-    return db.agregar(TABLA, body); // Llama al método agregar en mysql.js
+    return db.agregar(TABLA, body); 
 }
 
 function eliminar(body) {
-    return db.eliminar(TABLA, body); // Llama al método eliminar en mysql.js
+    return db.eliminar(TABLA, body);
 }
 
 module.exports = {
     todos,
     uno,
-    agregar, // Asegúrate de exportar este método
+    agregar,
     eliminar,
 };
